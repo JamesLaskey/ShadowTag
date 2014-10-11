@@ -26,7 +26,7 @@ public class ShadowTag extends ApplicationAdapter {
 		
 		purple = new Troll(); 
 		
-		map = new Map();
+		map = new Map("map1.txt");
 	}
 
 	@Override

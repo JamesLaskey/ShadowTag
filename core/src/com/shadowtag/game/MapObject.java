@@ -8,4 +8,5 @@ public interface MapObject {
 	public int getX();
 	public int getY();
 	public Rectangle getCollisionMesh();
+	public boolean isCollidable();
 }

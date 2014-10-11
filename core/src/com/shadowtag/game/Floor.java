@@ -3,8 +3,9 @@ package com.shadowtag.game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Wall implements MapObject{
-	Texture wallText = new Texture("wall.png");
+public class Floor implements MapObject{
+	
+	Texture floorText = new Texture("wall.png");
 	Rectangle collisionMesh;
 	
 	int x;
@@ -12,27 +13,30 @@ public class Wall implements MapObject{
 	int width;
 	int height;
 	
-	public Wall(int x, int y){
+	public Floor(int x, int y){
 		this.x = x;
 		this.y = y;
-		width = wallText.getWidth();
-		height = wallText.getHeight();
+		width = floorText.getWidth();
+		height = floorText.getHeight();
 		
 		collisionMesh = new Rectangle(x,y,width,height);
 	}
 
 	@Override
 	public Texture getTexture() {
-		return wallText;
+		return floorText;
 	}
+
 	@Override
 	public int getX() {
 		return x;
 	}
+
 	@Override
 	public int getY() {
 		return y;
 	}
+
 	@Override
 	public Rectangle getCollisionMesh() {
 		return collisionMesh;
@@ -40,6 +44,7 @@ public class Wall implements MapObject{
 
 	@Override
 	public boolean isCollidable() {
-		return true;
+		return false;
 	}
+
 }
