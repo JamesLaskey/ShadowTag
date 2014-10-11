@@ -6,12 +6,14 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 
 public class ShadowTag extends ApplicationAdapter {
 	SpriteBatch batch;
 	OrthographicCamera camera;
 	Troll purple; 
 	Map map;
+	Vector3 mousePos;
 
 	
 	@Override
@@ -21,9 +23,11 @@ public class ShadowTag extends ApplicationAdapter {
 		camera = new OrthographicCamera(); 
 		camera.setToOrtho(false, 480, 320);
 		
-		purple = new Troll(); 
-		
 		map = new Map();
+		purple = new Troll(map); 
+		
+		mousePos = new Vector3(); 
+		
 	}
 
 	@Override
@@ -40,32 +44,10 @@ public class ShadowTag extends ApplicationAdapter {
 		batch.end();
 		
 		
-		//listeners
-		/*
-		if (Gdx.input.isTouched()) {
-			mousePos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-			camera.unproject(mousePos);
-			troll.x = mousePos.x - troll.width / 2;
-		}
-		*/
-		float orgX = purple.sprite.getX(); 
-		float orgY = purple.sprite.getY(); 
-		if (Gdx.input.isKeyPressed(Keys.W)) {
-			purple.sprite.translateY(purple.velocity);
-		}
-		if (Gdx.input.isKeyPressed(Keys.A)) {
-			purple.sprite.translateX(-1 * purple.velocity);
-		}
-		if (Gdx.input.isKeyPressed(Keys.S)) {
-			purple.sprite.translateY(-1 * purple.velocity);
-		}
-		if (Gdx.input.isKeyPressed(Keys.D)) {
-			purple.sprite.translateX(purple.velocity);
-		}
-		if(map.checkCollision(purple.sprite.getBoundingRectangle())) {
-			purple.sprite.setX(orgX); 
-			purple.sprite.setY(orgY); 
-		}
+		mousePos.set(Gdx.input.getX(), Gdx.input.getY(), 0); 
+		camera.unproject(mousePos); 
+		purple.update(mousePos);
+		
 		camera.update(); 
 	}
 }
