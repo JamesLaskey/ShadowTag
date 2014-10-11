@@ -14,6 +14,7 @@ public class ShadowTag extends ApplicationAdapter {
 	SpriteBatch batch;
 	OrthographicCamera camera;
 	Troll purple; 
+	Map map;
 
 	
 	@Override
@@ -24,6 +25,8 @@ public class ShadowTag extends ApplicationAdapter {
 		camera.setToOrtho(false, 480, 320);
 		
 		purple = new Troll(); 
+		
+		map = new Map();
 	}
 
 	@Override
@@ -35,6 +38,7 @@ public class ShadowTag extends ApplicationAdapter {
 		
 		//draw sprites
 		batch.begin();
+		map.renderMapObjects(batch);
 		batch.draw(purple.sprite, purple.box.x, purple.box.y); 
 		batch.end();
 		
@@ -47,18 +51,23 @@ public class ShadowTag extends ApplicationAdapter {
 			troll.x = mousePos.x - troll.width / 2;
 		}
 		*/
-		
+		float orgX = purple.box.x;
+		float orgY = purple.box.y;
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			purple.box.y += purple.velocity; 
 		}
 		if (Gdx.input.isKeyPressed(Keys.A)) {
-			purple.box.x -= purple.velocity; 
+			purple.box.x -= purple.velocity;
 		}
 		if (Gdx.input.isKeyPressed(Keys.S)) {
 			purple.box.y -= purple.velocity; 
 		}
 		if (Gdx.input.isKeyPressed(Keys.D)) {
 			purple.box.x += purple.velocity; 
+		}
+		if(map.checkCollision(purple.box)) {
+			purple.box.x = orgX;
+			purple.box.y = orgY;
 		}
 		camera.update(); 
 	}

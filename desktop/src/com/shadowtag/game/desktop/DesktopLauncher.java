@@ -8,7 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Shadow Tag";
-		config.useGL30 = true;
+		config.useGL30 = false;
 		config.width = 480;
 		config.height = 320;
 		new LwjglApplication(new ShadowTag(), config);

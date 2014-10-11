@@ -13,8 +13,8 @@ public class Troll {
 		
 	public Troll() {
 		box = new Rectangle(); 
-		box.x = 800 / 2 - 64 / 2;
-		box.y = 20;
+		box.x = 100;
+		box.y = 100;
 		box.width = 20;
 		box.height = 20;
 		sprite = new Texture("purple_troll.png"); 
