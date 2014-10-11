@@ -1,0 +1,4 @@
+Install GDX.jar
+Install gradle plugin through Eclipse's "Install new software"
+	http://dist.springsource.com/release/TOOLS/gradle
+Import -> Gradle -> Gradle file -> Build model -> all of them, probably. 
