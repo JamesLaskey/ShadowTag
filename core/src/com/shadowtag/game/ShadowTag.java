@@ -62,9 +62,9 @@ public class ShadowTag extends ApplicationAdapter {
 		if (Gdx.input.isKeyPressed(Keys.D)) {
 			purple.sprite.translateX(purple.velocity);
 		}
-		if(map.checkCollision(purple.box)) {
-			purple.sprite.setX() = orgX;
-			purple.sprite.setY() = orgY;
+		if(map.checkCollision(purple.sprite.getBoundingRectangle())) {
+			purple.sprite.setX(orgX); 
+			purple.sprite.setY(orgY); 
 		}
 		camera.update(); 
 	}
