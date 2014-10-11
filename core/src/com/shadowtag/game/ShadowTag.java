@@ -23,7 +23,7 @@ public class ShadowTag extends ApplicationAdapter {
 		camera = new OrthographicCamera(); 
 		camera.setToOrtho(false, 480, 320);
 		
-		map = new Map();
+		map = new Map("map1.txt");
 		purple = new Troll(map); 
 		
 		mousePos = new Vector3(); 
