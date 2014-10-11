@@ -58,8 +58,9 @@ public class Troll {
 		float orgY = sprite.getY(); 
 
 		float dir = mouse2d.set(mousePos.x, mousePos.y).angle(pos.set(sprite.getX(), sprite.getY())); 
-		System.out.println(dir);
-		sprite.rotate(dir); 
+		//System.out.println(dir);
+		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
+		sprite.setRotation((float)30); 
 
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			sprite.translateY(velocity);

@@ -39,8 +39,8 @@ public class ShadowTag extends ApplicationAdapter {
 		
 		//draw sprites
 		batch.begin();
-		purple.render(batch); 
 		map.renderMapObjects(batch);
+		purple.render(batch); 
 		batch.end();
 		
 		
