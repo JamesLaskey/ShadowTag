@@ -12,10 +12,9 @@ import com.badlogic.gdx.math.Vector3;
 
 public class ShadowTag extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture purpleTroll; 
 	OrthographicCamera camera;
-	Rectangle troll; 
-	Vector3 pTrollPos;
+	Troll purple; 
+
 	
 	@Override
 	public void create () {
@@ -23,6 +22,8 @@ public class ShadowTag extends ApplicationAdapter {
 
 		camera = new OrthographicCamera(); 
 		camera.setToOrtho(false, 480, 320);
+		
+		purple = new Troll(); 
 	}
 
 	@Override
@@ -34,7 +35,7 @@ public class ShadowTag extends ApplicationAdapter {
 		
 		//draw sprites
 		batch.begin();
-		batch.draw(purpleTroll, troll.x, troll.y); 
+		batch.draw(purple.sprite, purple.box.x, purple.box.y); 
 		batch.end();
 		
 		
@@ -47,11 +48,18 @@ public class ShadowTag extends ApplicationAdapter {
 		}
 		*/
 		
-		if (Gdx.input.isKeyPressed(Keys.A)) {
-			
-			troll.x = k; 
+		if (Gdx.input.isKeyPressed(Keys.W)) {
+			purple.box.y += purple.velocity; 
 		}
-		
+		if (Gdx.input.isKeyPressed(Keys.A)) {
+			purple.box.x -= purple.velocity; 
+		}
+		if (Gdx.input.isKeyPressed(Keys.S)) {
+			purple.box.y -= purple.velocity; 
+		}
+		if (Gdx.input.isKeyPressed(Keys.D)) {
+			purple.box.x += purple.velocity; 
+		}
 		camera.update(); 
 	}
 }

@@ -5,15 +5,18 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Troll {
 
-	Texture img; 
+	Texture sprite; 
 	Rectangle box; 
-	void create() {
+	
+	int velocity = 5; 
+	
 		
+	public Troll() {
 		box = new Rectangle(); 
 		box.x = 800 / 2 - 64 / 2;
 		box.y = 20;
 		box.width = 20;
 		box.height = 20;
-		img = new Texture("purple_troll.png"); 
+		sprite = new Texture("purple_troll.png"); 
 	}
 }
