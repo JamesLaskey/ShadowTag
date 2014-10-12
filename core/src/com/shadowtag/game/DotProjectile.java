@@ -1,27 +1,40 @@
 package com.shadowtag.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Light implements DynamicMapObject{
+public class DotProjectile implements DynamicMapObject{
+	
+	private float x;
+	private float y;
+	private static final float VELOCITY = 5.0f;
+	private float direction;
+	private Sprite selfSprite;
+	
+	public DotProjectile(float x, float y){
+		this.x = x;
+		this.y = y;
+		
+		selfSprite = new Sprite();
+		selfSprite.setOriginCenter();
+		selfSprite.setTexture(new Texture("black_dot.png"));
+	}
 
 	@Override
 	public Texture getTexture() {
-		// TODO Auto-generated method stub
-		return null;
+		return selfSprite.getTexture();
 	}
 
 	@Override
 	public float getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return x;
 	}
 
 	@Override
 	public float getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return y;
 	}
 
 	@Override
@@ -38,7 +51,6 @@ public class Light implements DynamicMapObject{
 
 	@Override
 	public void update(Map map) {
-		// TODO Auto-generated method stub
 		
 	}
 
