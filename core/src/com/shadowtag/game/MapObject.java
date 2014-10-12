@@ -5,8 +5,8 @@ import com.badlogic.gdx.math.Rectangle;
 
 public interface MapObject {
 	public Texture getTexture();
-	public int getX();
-	public int getY();
+	public float getX();
+	public float getY();
 	public Rectangle getCollisionMesh();
 	public boolean isCollidable();
 }

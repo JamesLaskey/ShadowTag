@@ -7,8 +7,8 @@ public class Wall implements MapObject{
 	Texture wallText = new Texture("wall.png");
 	Rectangle collisionMesh;
 	
-	int x;
-	int y;
+	float x;
+	float y;
 	int width;
 	int height;
 	
@@ -26,11 +26,11 @@ public class Wall implements MapObject{
 		return wallText;
 	}
 	@Override
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 	@Override
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 	@Override

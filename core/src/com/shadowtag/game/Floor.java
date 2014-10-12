@@ -8,12 +8,12 @@ public class Floor implements MapObject{
 	Texture floorText = new Texture("wall.png");
 	Rectangle collisionMesh;
 	
-	int x;
-	int y;
+	float x;
+	float y;
 	int width;
 	int height;
 	
-	public Floor(int x, int y){
+	public Floor(float x, float y){
 		this.x = x;
 		this.y = y;
 		width = floorText.getWidth();
@@ -28,12 +28,12 @@ public class Floor implements MapObject{
 	}
 
 	@Override
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
 	@Override
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
