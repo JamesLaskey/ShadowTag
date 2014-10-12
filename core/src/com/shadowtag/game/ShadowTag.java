@@ -11,7 +11,6 @@ import com.badlogic.gdx.math.Vector3;
 public class ShadowTag extends ApplicationAdapter {
 	SpriteBatch batch;
 	OrthographicCamera camera;
-	Troll purple; 
 	Map map;
 	Vector3 mousePos;
 
@@ -23,8 +22,7 @@ public class ShadowTag extends ApplicationAdapter {
 		camera = new OrthographicCamera(); 
 		camera.setToOrtho(false, 480, 320);
 		
-		map = new Map("map1.txt");
-		purple = new Troll(map); 
+		map = new Map("map1.txt", camera);
 		
 		mousePos = new Vector3(); 
 		
@@ -40,13 +38,7 @@ public class ShadowTag extends ApplicationAdapter {
 		//draw sprites
 		batch.begin();
 		map.renderMapObjects(batch);
-		purple.render(batch); 
 		batch.end();
-		
-		
-		mousePos.set(Gdx.input.getX(), Gdx.input.getY(), 0); 
-		camera.unproject(mousePos); 
-		purple.update(mousePos);
 		
 		camera.update(); 
 	}

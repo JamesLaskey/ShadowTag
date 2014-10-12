@@ -2,6 +2,7 @@ package com.shadowtag.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
-public class Troll {
+public class Troll implements Agent{
 
 	
 	Sprite sprite; 
@@ -20,14 +21,18 @@ public class Troll {
 	Array<Sprite> trail; 
 	Vector2 mouse2d; 
 	Vector2 pos; 
+	Vector3 mousePos;
+	OrthographicCamera camera;
 	
 		
-	public Troll(Map map) {
+	public Troll(int x, int y, Map map, OrthographicCamera camera) {
+		this.camera = camera;
 		sprite = new Sprite(new Texture("purple_troll.png")); 
 		sprite.setBounds(100, 100, 20, 20);
 		
 		mouse2d = new Vector2(); 
 		pos = new Vector2(); 
+		mousePos = new Vector3();
 
 		trail = new Array<Sprite>(); 
 		trail.add(new Sprite(sprite)); 
@@ -49,7 +54,11 @@ public class Troll {
 
 	}
 	
-	public void update(Vector3 mousePos) {
+	@Override
+	public void update(Map map) {
+		
+		mousePos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+		camera.unproject(mousePos);
 		
 		float orgX = sprite.getX(); 
 		float orgY = sprite.getY(); 
