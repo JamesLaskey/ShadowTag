@@ -58,12 +58,12 @@ public class Map {
 	}
 	
 	public void renderMapObjects(SpriteBatch batch) {
-		for(int j = 0; j < mapSizeYBlocks; j++) {
+		/*for(int j = 0; j < mapSizeYBlocks; j++) {
 			for(int i = 0; i < mapSizeXBlocks; i++) {
 				MapObject obj = mapObjectArray.get(j).get(i);
 				batch.draw(obj.getTexture(), obj.getX(), obj.getY());
 			}
-		}
+		} */
 		
 		for(Agent agent : agentArray) {
 			agent.update(this);
@@ -87,5 +87,9 @@ public class Map {
 			}
 		}
 		return ret;
+	}
+	
+	public void registerDynamicObject(DynamicMapObject obj){
+		dynamicObjectArray.add(obj);
 	}
 }

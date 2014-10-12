@@ -25,10 +25,10 @@ public class Troll implements Agent{
 	OrthographicCamera camera;
 	
 		
-	public Troll(int x, int y, Map map, OrthographicCamera camera) {
+	public Troll(float x, float y, Map map, OrthographicCamera camera) {
 		this.camera = camera;
 		sprite = new Sprite(new Texture("purple_troll.png")); 
-		sprite.setBounds(100, 100, 20, 20);
+		sprite.setBounds(x, y, 20, 20);
 		
 		mouse2d = new Vector2(); 
 		pos = new Vector2(); 
@@ -68,8 +68,7 @@ public class Troll implements Agent{
 		mouse2d.set(diff.x, diff.y); 
 		
 		float dir = mouse2d.angle(); 
-		System.out.println(dir);
-		
+
 		sprite.setRotation(dir);
 
 		if (Gdx.input.isKeyPressed(Keys.W)) {
@@ -87,6 +86,11 @@ public class Troll implements Agent{
 		if(map.checkCollision(sprite.getBoundingRectangle())) {
 			sprite.setX(orgX); 
 			sprite.setY(orgY); 
+		}
+		
+		if(Gdx.input.justTouched()) {
+			System.out.println("Fire!");
+			map.registerDynamicObject(new DotProjectile(sprite.getX(), sprite.getY(), sprite.getRotation()));
 		}
 	}
 }
