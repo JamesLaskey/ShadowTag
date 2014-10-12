@@ -23,8 +23,7 @@ public class Troll {
 	
 		
 	public Troll(Map map) {
-		sprite = new Sprite(); 
-		sprite.setTexture(new Texture("purple_troll.png"));
+		sprite = new Sprite(new Texture("purple_troll.png")); 
 		sprite.setBounds(100, 100, 20, 20);
 		
 		mouse2d = new Vector2(); 
@@ -37,9 +36,7 @@ public class Troll {
 	}
 
 	public void render(SpriteBatch batch) {
-		//sprite.draw(batch);
-		//batch.draw(new Texture("purple_troll.png"), sprite.getX(), sprite.getY()); 
-		batch.draw(sprite.getTexture(), sprite.getX(), sprite.getY()); 
+		sprite.draw(batch);
 		/*
 		for (Sprite v : trail) {
 			v.draw(batch);
@@ -56,11 +53,15 @@ public class Troll {
 		
 		float orgX = sprite.getX(); 
 		float orgY = sprite.getY(); 
+		
 
-		float dir = mouse2d.set(mousePos.x, mousePos.y).angle(pos.set(sprite.getX(), sprite.getY())); 
-		//System.out.println(dir);
-		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
-		sprite.setRotation((float)30); 
+		Vector3 diff = mousePos.sub(sprite.getX(), sprite.getY(), 0); 
+		mouse2d.set(diff.x, diff.y); 
+		
+		float dir = mouse2d.angle(); 
+		System.out.println(dir);
+		
+		sprite.setRotation(dir);
 
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			sprite.translateY(velocity);
