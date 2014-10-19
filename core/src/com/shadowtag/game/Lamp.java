@@ -44,12 +44,12 @@ public class Lamp implements DynamicMapObject{
 	}
 
 	@Override
-	public int getX() {
+	public float getX() {
 		return x; 
 	}
 
 	@Override
-	public int getY() {
+	public float getY() {
 		return y; 
 	}
 
@@ -68,7 +68,6 @@ public class Lamp implements DynamicMapObject{
 
 	@Override
 	public void update(Map map) {
-		// TODO Auto-generated method stub
 		
 	}
 
