@@ -68,6 +68,8 @@ public class Troll implements Agent{
 		mouse2d.set(diff.x, diff.y); 
 		
 		float dir = mouse2d.angle(); 
+		
+		System.out.println(dir);
 
 		sprite.setRotation(dir);
 
