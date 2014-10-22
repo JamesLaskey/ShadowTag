@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Floor implements MapObject{
 	
-	Texture floorText = new Texture("wall.png");
+	Texture floorText = new Texture("floor_1.png");
 	Rectangle collisionMesh;
 	
 	float x;

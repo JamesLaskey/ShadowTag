@@ -44,11 +44,14 @@ public class Map {
 			Array<MapObject> objArr = mapObjectArray.get(i);
 			for(int j = 0; j < mapSizeXBlocks; j++){
 				switch (mapXRow[j]) {
-					case 'W': objArr.add(new Wall(j*BLOCK_SIZE, i*BLOCK_SIZE));
+					case 'W': //wall
+						objArr.add(new Wall(j*BLOCK_SIZE, i*BLOCK_SIZE));
 						break;
-					case 'E': objArr.add(new Floor(j*BLOCK_SIZE, i*BLOCK_SIZE));
+					case 'E': //floor
+						objArr.add(new Floor(j*BLOCK_SIZE, i*BLOCK_SIZE));
 						break;
-					case '#': objArr.add(new Floor(j*BLOCK_SIZE, i*BLOCK_SIZE));
+					case '#': //spawn point 
+						objArr.add(new Floor(j*BLOCK_SIZE, i*BLOCK_SIZE));
 						agentArray.add(new Troll(j*BLOCK_SIZE, i*BLOCK_SIZE, this, camera));
 						break;
 				}
