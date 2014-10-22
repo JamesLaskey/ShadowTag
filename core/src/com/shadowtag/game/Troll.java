@@ -12,30 +12,33 @@ import com.badlogic.gdx.utils.Array;
 
 public class Troll implements Agent{
 
+	private Sprite sprite; 
 	
-	Sprite sprite; 
+	private Map map; 
 	
-	Map map; 
+	private int velocity = 5;  
+	private Vector2 mouse2d; 
+	private Vector2 pos; 
+	private Vector3 mousePos;
+	private OrthographicCamera camera;
 	
-	int velocity = 5; 
-	Array<Sprite> trail; 
-	Vector2 mouse2d; 
-	Vector2 pos; 
-	Vector3 mousePos;
-	OrthographicCamera camera;
+	private float width;
+	private float height;
 	
 		
 	public Troll(float x, float y, Map map, OrthographicCamera camera) {
 		this.camera = camera;
 		sprite = new Sprite(new Texture("purple_troll.png")); 
-		sprite.setBounds(x, y, 20, 20);
+
+		sprite.setCenter(x, y);
+		sprite.setOriginCenter();
+		
+		width = sprite.getWidth();
+		height = sprite.getHeight();
 		
 		mouse2d = new Vector2(); 
 		pos = new Vector2(); 
 		mousePos = new Vector3();
-
-		trail = new Array<Sprite>(); 
-		trail.add(new Sprite(sprite)); 
 		
 		this.map = map; 
 	}
@@ -62,16 +65,14 @@ public class Troll implements Agent{
 		
 		float orgX = sprite.getX(); 
 		float orgY = sprite.getY(); 
-		
 
-		Vector3 diff = mousePos.sub(sprite.getX(), sprite.getY(), 0); 
+		Vector3 diff = mousePos.sub(sprite.getX() + (width/2f), 
+				sprite.getY() + (height/2f), 0); 
 		mouse2d.set(diff.x, diff.y); 
 		
 		float dir = mouse2d.angle(); 
-		
-		System.out.println(dir);
 
-		sprite.setRotation(dir);
+		sprite.setRotation((float) dir);
 
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			sprite.translateY(velocity);
