@@ -32,6 +32,14 @@ public class ShadowTag extends ApplicationAdapter {
 		
 	}
 
+	/*@Override
+	public void render() {
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		PolygonTest l = new PolygonTest(1, 2); 
+		l.render();
+	} */
+	
+	
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(1, 1, 1, 1);

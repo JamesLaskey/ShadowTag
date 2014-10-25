@@ -2,10 +2,14 @@ package com.shadowtag.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.BoundingBox;
 
 public class Floor implements MapObject{
 	
 	Texture floorText = new Texture("floor_1.png");
+	BoundingBox boundingBox;
 	Rectangle collisionMesh;
 	
 	float x;
@@ -19,6 +23,8 @@ public class Floor implements MapObject{
 		width = floorText.getWidth();
 		height = floorText.getHeight();
 		
+		boundingBox = new BoundingBox(new Vector3(x,y,0), 
+				new Vector3(x+width, y+height, 0));
 		collisionMesh = new Rectangle(x,y,width,height);
 	}
 
@@ -45,6 +51,12 @@ public class Floor implements MapObject{
 	@Override
 	public boolean isCollidable() {
 		return false;
+	}
+
+	@Override
+	public BoundingBox getBoundingBox() {
+		// TODO Auto-generated method stub
+		return boundingBox;
 	}
 
 }

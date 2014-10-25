@@ -45,16 +45,6 @@ public class Troll implements Agent{
 
 	public void render(SpriteBatch batch) {
 		sprite.draw(batch);
-		/*
-		for (Sprite v : trail) {
-			v.draw(batch);
-		}
-        trail.add(new Sprite(sprite)); 
-        if (trail.size > 100) {
-        	trail.removeIndex(0); 
-        }
-        */
-
 	}
 	
 	@Override
@@ -93,7 +83,7 @@ public class Troll implements Agent{
 		
 		if(Gdx.input.justTouched()) {
 			System.out.println("Fire!");
-			map.registerDynamicObject(new DotProjectile(sprite.getX(), sprite.getY(), sprite.getRotation()));
+			map.registerDynamicObject(new DotProjectile(sprite.getX(), sprite.getY(), sprite.getRotation(), map));
 		}
 	}
 }

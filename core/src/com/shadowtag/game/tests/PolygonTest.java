@@ -87,23 +87,25 @@ public class PolygonTest  {
 		//now we push the vertex data into our array
 		//we are assuming (0, 0) is lower left, and Y is up
 		
+		
+		
 		float c = color.toFloatBits(); 
 		//bottom left vertex
 		verts[idx++] = x; 			//center: Position(x, y) 
 		verts[idx++] = y;
-		verts[idx++] = c;		  	//Color(r, g, b, a)
+		verts[idx++] = Color.RED.toFloatBits();		  	//Color(r, g, b, a)
 		
 		verts[idx++] = x; 
 		verts[idx++] = y+10; 
-		verts[idx++] = c; 
+		verts[idx++] = Color.BLUE.toFloatBits(); 
 		
-		verts[idx++] = x; 
-		verts[idx++] = y+10; 
-		verts[idx++] = c; 
+		verts[idx++] = x+10; 
+		verts[idx++] = y; 
+		verts[idx++] = Color.GREEN.toFloatBits(); 
 
 		verts[idx++] = x+20; 
 		verts[idx++] = y+20; 
-		verts[idx++] = c; 
+		verts[idx++] = Color.ORANGE.toFloatBits(); 
 
 	}
 	public PolygonTest(int x, int y) {

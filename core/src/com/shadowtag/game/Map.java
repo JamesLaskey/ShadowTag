@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.Array;
 
 public class Map {
@@ -90,6 +93,32 @@ public class Map {
 			}
 		}
 		return ret;
+	}
+	
+	//perhaps take in Vector3 to prevent creating new one each time?
+	/*
+	 * checks a ray against all the map objects and produces an intersection point if it is within dist
+	 * 
+	 */
+	public Vector3 raycast(Ray ray, float dist) {
+		Vector3 intersection = new Vector3();
+		float closestDist = dist;
+		Vector3 origin = ray.origin;
+		Vector3 closestIntersect = null;
+		
+		for(int j = 0; j < mapSizeYBlocks; j++) {
+			for(int i = 0; i < mapSizeXBlocks; i++) {
+				MapObject obj = mapObjectArray.get(j).get(i);
+				if(obj.isCollidable()){
+					Intersector.intersectRayBounds(ray, obj.getBoundingBox(), intersection);
+					if(intersection.dst(origin) < closestDist) {
+						closestIntersect = intersection.cpy();
+					}
+				}
+			}
+		}
+		System.out.println("dist " + closestDist);
+		return closestIntersect;
 	}
 	
 	public void registerDynamicObject(DynamicMapObject obj){
