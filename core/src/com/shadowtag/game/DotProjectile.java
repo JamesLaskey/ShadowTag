@@ -87,7 +87,7 @@ public class DotProjectile implements DynamicMapObject{
 			x += diffx;
 			y += diffy;
 			sprite.setPosition(x, y);
-			origin.set(diffx, diffy, 0);
+			origin.set(x, y, 0);
 		}
 	}
 
@@ -99,11 +99,9 @@ public class DotProjectile implements DynamicMapObject{
 		float rotationStep = 360 / NUM_RAYS;
 		
 		for(int i = 0; i < NUM_RAYS; i++) {
-			System.out.println(direction.x + " " + direction.y);
 			Vector3 endpoint = map.raycast(ray, RAY_LENGTH);
-			System.out.println(endpoint.x + " " + endpoint.y);
 			if(endpoint == null) {
-				endpoint.set(origin.x + direction.x, origin.y + direction.y, 0);
+				endpoint = new Vector3(origin.x + direction.x, origin.y + direction.y, 0);
 			}
 			bounds[2*i] = endpoint.x;
 			bounds[2*i + 1] = endpoint.y;
@@ -113,6 +111,9 @@ public class DotProjectile implements DynamicMapObject{
 					0);
 			ray.set(origin, direction);
 		}
+		
+		System.out.println(Arrays.toString(bounds));
+		
 		Pixmap pix = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
 		pix.setColor(0xDEADBEFF); // DE is red, AD is green and BE is blue.
 		pix.fill();

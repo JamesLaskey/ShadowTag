@@ -117,7 +117,6 @@ public class Map {
 				}
 			}
 		}
-		System.out.println("dist " + closestDist);
 		return closestIntersect;
 	}
 	
