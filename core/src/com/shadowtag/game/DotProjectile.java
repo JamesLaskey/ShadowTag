@@ -28,13 +28,10 @@ public class DotProjectile implements DynamicMapObject{
 	private Map map;
 	
 	private Vector3 origin;
-	private static final int NUM_RAYS = 4;
+	private static final int NUM_RAYS = 12;
 	private static final float RAY_LENGTH = 40f;
 	private float[] bounds = new float[NUM_RAYS*2];
-	private short[] lightVertexTriangles = new short[] {
-		0,1,2,
-		0,2,3
-	};
+	private short[] lightVertexTriangles = new short[(NUM_RAYS -2) * 3]; 
 	private PolygonRegion lightRegion = null;
 	
 	public DotProjectile(float x, float y, float direction, Map map){
@@ -46,6 +43,12 @@ public class DotProjectile implements DynamicMapObject{
 		sprite = new Sprite(new Texture("black_dot.png"));
 		sprite.setPosition(x, y);
 		
+		int counter = 1;
+		for(int i = 0; i < (NUM_RAYS - 2) * 3; i+=3) {
+			lightVertexTriangles[i] = 0;
+			lightVertexTriangles[i+1] = (short) (counter);
+			lightVertexTriangles[i+2] = (short) (++counter);
+		}
 		
 		this.map = map;
 	}
@@ -112,7 +115,7 @@ public class DotProjectile implements DynamicMapObject{
 			ray.set(origin, direction);
 		}
 		
-		System.out.println(Arrays.toString(bounds));
+		//System.out.println(Arrays.toString(bounds));
 		
 		Pixmap pix = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
 		pix.setColor(0xDEADBEFF); // DE is red, AD is green and BE is blue.
